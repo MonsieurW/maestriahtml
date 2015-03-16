@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <TITLE>Maestria</TITLE>
+	  <link href="maestria.css" rel="stylesheet" type="text/css">
+	  <link href="../commun/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	      <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+   </HEAD>
+   <BODY>
+      <header>
+	  <a href="index.html">Maestria</a>  Evaluer c'est connaître et comprendre c'est progresser
+		<div id="logzone">
+			<div class="login">Albert Einstein</div>
+			<div class="logout">DECONNEXION</div>
+		</div>
+	  </header>
+	  <nav>
+	
+		<h3><a href="classes.html">CLASSES</a></h3> 
+		<h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+		<br/>
+		<h3><a href="evals.html">EVALUATIONS</a></h3>
+		<h3 class="eval">PUISSANCE</h3><div class="flechebas"></div>
+		<h3 class="eval">CORRECTION</h3>
+		<br/>
+		<h3><a href="items.html">ITEMS PEDA</a></h3>
+		
+		<footer>
+			<a href="">Contact</a>
+			<a href="metaphysik.fr">Metaphysik</a>
+		</footer>	
+	  </nav>
+	  <section id="popup">
+		<section id="inpopup">
+		</section>
+	  </section>
+	  <section id="corps" class="items">
+		<div id="fleche"></div>
+		<section id ="titre">
+			<h3 class="classe">3<sup>2</sup></h3>
+			<h1>ITEMS PEDAGOGIQUES</h1>
+				
+		</section>
+		<section id ="contenu" >
+			<div>
+				<h4>DOMAINE</h4><h4>THEMES</h4><h4>ITEMS</h4>
+			</div>	
+			<ul>
+		
+		</ul>
+				
+		</section>
+	  </section>
+	</BODY>
+	 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="maestria.js"></script>
+	<script>
+
+	list_item('ul',true);
+	
+
+//////Ajout d'une zone input lors des clicks sur plus	
+	$('.items .add').on('click', function(){
+		niveau=$(this).parents('ul').length;
+		if(niveau==3){
+			$(this).before('<li><input type="text" placeholder="Nouvel item"></li>');
+		}
+		else if(niveau==2){
+			$(this).before('<li><input type="text" placeholder="Nouveau thème"></li>');}
+		else{
+			$(this).before('<li><input type="text" placeholder="Nouveau domaine"></li>');}
+
+	});
+	</script>
+	
+		<script src="interaction.js"></script>	
+</HTML>	

@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <HTML>
    <HEAD>
       <TITLE>Maestria</TITLE>
@@ -11,9 +9,9 @@
    </HEAD>
    <BODY>
       <header>
-	  <a href="index.html">Maestria</a>  Evaluer c'est connaÃ®tre et comprendre c'est progresser
+	  <a href="index.html">Maestria</a>  Evaluer c'est connaître et comprendre c'est progresser
 		<div id="logzone">
-			<div class="login">Albert Einstein</div>
+			<a href="login.html"><div class="login">Albert Einstein</div></a>
 			<div class="logout">DECONNEXION</div>
 		</div>
 	  </header>
@@ -23,7 +21,7 @@
 		<h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
 		<br/>
 		<h3><a href="evals.html">EVALUATIONS</a></h3>
-		<h3 id="evalchx" class="eval">PUISSANCE</h3><div class="flechebas"></div>
+		
 		<h3 class="eval"><a href="correction.html">CORRECTION</a></h3>
 		<br/>
 		<h3><a href="items.html">ITEMS PEDA</a></h3>
@@ -39,11 +37,10 @@
 		</section>
 	  </section>
 	  <section id="corps" class="evaluer">
-		<div id="fleche"></div>
 		<section id ="titre">
-			<h3 class="classe">3<sup>2</sup></h3>
+			<h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
 			
-			<h1>EVALUER</h1>
+			<h1>EVALUER <span class="awsm"> &#xf0da; </span><span id="evalchx"> PUISSANCE</span></h1>
 				
 		</section>
 		<section id ="contenu" >
@@ -60,42 +57,213 @@
 	 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="maestria.js"></script>
 	<script>
+///////////////////////////////Donnees exemple
+
+	
+	
+	
+/////////////////////////////// Fonctions	
 	
 	gen_case_eleves(IDclasse);
 	
 	
 	function gen_case_eleves(IDclasse){
 	content="";
-	var c=Object.keys(classes[IDclasse]).length;
-	for(var i=1;i<c;i++){//i reprÃ©sentera la position de l'Ã©lÃ¨ve
-		content+='<article data-idelv="'+classes[IDclasse][i][0];
+	var c=Object.keys(classes[IDclasse]).length-1;
+	for(var i=1;i<c;i++){//i représentera la position de l'élève
+		content+='<article draggable="true" data-idelv="'+classes[IDclasse][i][0];
 		content+='"><div class="awsm perso" style="color:rgb('+couleur(classes[IDclasse][i][6]);
 		content+=',0)">&#xf007;</div><div class="nom">'+classes[IDclasse][i][1];
 		content+='</div><div class="awsm taxo" style="color:rgb('+couleur(classes[IDclasse][i][2]);
 		content+=',0)"><span>&#xf02d;</span><span style="color:rgb('+couleur(classes[IDclasse][i][3]);
-		content+=',0)">&#xf0e2;</span><span style="color:rgb('+couleur(classes[IDclasse][i][4])+',0)">&#xf0ad;</span><span style="color:rgb('+couleur(classes[IDclasse][i][2])+',0)">&#xf005;</span></div>	<div class="prctg">'+classes[IDclasse][i][7]+'</div></article>';
+		content+=',0)">&#xf0e2;</span><span style="color:rgb('+couleur(classes[IDclasse][i][4])+',0)">&#xf0ad;</span><span style="color:rgb('+couleur(classes[IDclasse][i][5])+',0)">&#xf005;</span></div>	<div class="prctg">'+classes[IDclasse][i][7]+'</div></article>';
 		
 	}
 
+	rangee=classes[IDclasse]['optaff'][0];
+	$("#cases").width(145*rangee);
+	
 	$('#cases').html(content);	
 	//actualiser opt aff?
 }
+	///////////////Drag n Drop//////prob à régler
+$.event.props.push('dataTransfer');
+ 
+$(document).ready(function() {
+    var i, $this, $log = $('#log');
+ 
+    $('#cases article').on({
+        // on commence le drag
+        dragstart: function(e) {
+            $this = $(this);
+ 
+            i = $this.index();
+            $this.css('opacity', '0.5');
+ 
+            // on garde le texte en mémoire (A, B, C ou D)
+            e.dataTransfer.setData('text', $this.clone());
+        },
+        // on passe sur un élément draggable
+        dragenter: function(e) {
+            // on augmente la taille pour montrer le draggable
+            $(this).animate({
+                width: '90px'
+            }, 'fast');
+ 
+            e.preventDefault();
+        },
+        // on quitte un élément draggable
+        dragleave: function() {
+            // on remet la taille par défaut
+            $(this).animate({
+                width: '140px'
+            }, 'fast');
+        },
+        // déclenché tant qu on a pas lâché l élément
+        dragover: function(e) {
+            e.preventDefault();
+        },
+        // on lâche l élément
+        drop: function(e) {
+            // si l élément sur lequel on drop n'est pas l'élément de départ
+            if (i !== $(this).index()) {
+                // on récupère le texte initial
+                var data = e.dataTransfer.getData('text');
+ 
+                // on log
+                $log.html(data + ' > ' + $(this).text()).fadeIn('slow').delay(1000).fadeOut();
+ 
+                // on met le nouveau texte à la place de l ancien et inversement
+                $this.text($(this).text());
+                $(this).text(data);
+            }
+ 
+            // on remet la taille par défaut
+            $(this).animate({
+                width: '75px'
+            }, 'fast');
+        },
+        // fin du drag (même sans drop)
+        dragend: function() {
+            $(this).css('opacity', '1');
+        },
+        // au clic sur un élément
+        click: function() {
+           // alert($(this).text());
+        }
+    });
+});	
+	
 	
 //ouverture fenetre popup options affichage	
 $('.optaff').on('click', function(){
-genererpopup("optaff","OPTIONS D'AFFICHAGE",'optaffchx">','<form ><label for="rangee">NOMBRE D\'ELEVE PAR LIGNE</label><input type="number" name="rangee" id="rangee" min="1"><div><h6>ITEM ASSOCIE AU CHIFFRE</h6><input name="itemchiffre" placeholder="A choisir parmi les items pÃ©dagogiques"><span class="awsm chitem">&#xf0b1;</span></div><div><h6>ITEM ASSOCIE A LA COULEUR</h6><input name="itemcouleur" placeholder="A choisir parmi les items pÃ©dagogiques"><span class="awsm chitem">&#xf0b1;</span> </div></div><div id="creer" class="similiexit">APPLIQUER</div></form><ul id="chitem"></ul>');	
+x=classes[IDclasse]['optaff'];//rajouter les items
+console.log(x);
+
+var content='<form ><label for="rangee">NOMBRE D\'ELEVE PAR LIGNE</label><input type="number" name="rangee" id="rangee" min="1" value="'+x[0]+'"><div><h6>ITEM ASSOCIE AU CHIFFRE</h6><input name="itemchiffre" placeholder="A choisir parmi les items pédagogiques" data-id="'+x[1]+'" value="'+finditem(x[1])+'"><span class="awsm chitem">&#xf0b1;</span></div><div><h6>ITEM ASSOCIE A LA COULEUR</h6><input name="itemcouleur" placeholder="A choisir parmi les items pédagogiques" data-id="'+x[2]+'" value="'+finditem(x[2])+'"><span class="awsm chitem">&#xf0b1;</span> </div></div><div id="creer" class="similiexit">APPLIQUER</div></form><ul id="chitem"></ul>';
+
+genererpopup("optaff","OPTIONS D'AFFICHAGE",'optaffchx">',content);	
 });	
 
-//gÃ©rer le nombre d'Ã©leve par rangÃ©e	
+//gérer le nombre d'éleve par rangée	
 $('#popup').on('click','.similiexit', function(){
-	rangee=$('#rangee').val();console.log(rangee);
+	rangee=$('#rangee').val();
 	$("#cases").width(145*rangee);
+	classes[IDclasse]['optaff']=[rangee,$('input[name="itemchiffre"]').data('id'),$('input[name="itemcouleur"]').data('id')];
+	console.log(classes[IDclasse]['optaff']);
 	$('#popup').slideToggle();
+	
 });
 
 $('#popup').on('click','.chitem', function(){
-	list_item('#chitem',false);	
+	exid=$(this).prev('input').data('id');
+	list_item('#chitem',false,"",exid);
+	$(this).prev('input').addClass('actif');
+	
 });
+$('#popup').on('dblclick','#chitem li', function(){
+	$('input.actif').attr('value',$(this).html());
+	$('input.actif').attr('data-id',$(this).data('id')).removeClass('actif');
+	$('#chitem').empty();
+});
+
+
+
+//popup évaluation
+input={'A':2,'B':1,'C':0};
+$('#cases').on('click','article', function(){
+	IDelv=parseInt($(this).data('idelv'));console.log(IDelv);
+	
+	generer_input(IDelv);
+	
+	genererpopup("eval","EVALUER "+nom_elv+" SUR "+e['nom'],'inputresult">',liste);
+	
+});
+
+$('#popup').on('click','.inputresult h4', function(){
+	IDelv=parseInt($(this).data('idelv'));
+	
+	generer_input(IDelv);
+	
+	genererpopup("eval","EVALUER "+nom_elv+" SUR "+e['nom'],'inputresult">',liste);
+
+});
+function generer_input(IDelv){
+	 liste="";
+	 e=evals[IDeval];
+	var c=Object.keys(e).length-2;
+		for(i=1;i<c;i++){
+			taxo=e[i][2];
+			liste+='<article data-idque="'+e[i][0]+'"><aside><h5>'+i+')'+e[i][1]+'</h5><div><span class="awsm">'+taxos[taxo][1]+'</span> '+taxos[taxo][0]+'<span class="note">/'+e[i][3]+'</span></div><div><span class="awsm">&#xf19d;</span> '+e[i][4]+'</div><div><span class="awsm">&#xf085;</span> '+e[i][5]+'</div></aside><div class="input">';
+			if(results[IDelv]==undefined){results[IDelv]={};}
+			idq=parseInt(e[i][0]);
+			for(key in input){
+				liste+='<div data-val="'+input[key]+'"';
+				if(results[IDelv][idq]==parseInt(input[key])){
+					liste+=' class="actif"';
+				}	
+			liste+='>'+key+'</div>';	
+			}
+			
+		liste+='</article>';
+		}
+	
+	liste+='<div class="boutons">';
+	
+	suila='article[data-idelv="'+IDelv+'"]';//"this" francisé!
+	
+	IDelv_prec=$(suila).prev('article').data('idelv');
+	if(!(IDelv_prec==undefined)){
+		nom_elv_prec=$('article[data-idelv="'+IDelv_prec+'"]').children('.nom').html();	
+		liste+='<h4 data-idelv="'+IDelv_prec+'">EVALUER '+nom_elv_prec+'</h4>';
+	}
+		
+	IDelv_suiv=$(suila).next('article').data('idelv');	
+	if(!(IDelv_suiv==undefined)){
+		nom_elv_suiv=$('article[data-idelv="'+IDelv_suiv+'"]').children('.nom').html();
+		liste+='<h4 style="float:right" data-idelv="'+IDelv_suiv+'">EVALUER '+nom_elv_suiv+'</h4></div>';
+	}
+	nom_elv=$(suila).children('.nom').html();
+}	
+
+
+
+	
+
+$('#popup').on('click','.input div', function(){
+	$(this).siblings().removeClass('actif');
+	$(this).addClass('actif');
+	var val=parseInt($(this).data('val'));
+	IDque=parseInt($(this).parents('article').data('idque'));
+	results[IDelv][IDque]=val;
+	
+	//console.log(results);
+
+//Exemple de tableau de résultats
+//results={IDelv:{IDquestion1:valeur,IDquestion2:valeur}};
+
+});
+
 
 	
 	

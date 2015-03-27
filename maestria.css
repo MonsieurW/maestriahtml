@@ -2,10 +2,11 @@
 body{font-family:Questrial,Arial;}
 a{text-decoration:none;color:inherit;}
 header{height:65px;}
-	#logzone{background:rgb(216, 216, 216);position: absolute;right: 10px;top:2px;padding: 10px;}
+	#logzone{background:rgb(216, 216, 216);position: absolute;right: 10px;top:2px;padding: 10px;cursor:pointer;}
 		.login{text-transform:uppercase;}
 		.logout{font-size:12px;text-align:center}
-
+		.logo{  font-size: 30px;
+  margin: 0px 11px 0px 32px;}
 nav{position:absolute;height:600px;width: 140px;padding-left: 20px;display:inline-block;background:white;top: 55px;z-index: 35;}
 	h1,h3{text-align:center;text-transform:uppercase;}
 	nav h3{padding:10px 5px;background:rgb(216, 216, 216);margin: 10px;font-size: 15px;text-align: center;cursor:pointer;} 
@@ -16,7 +17,7 @@ nav{position:absolute;height:600px;width: 140px;padding-left: 20px;display:inlin
 	.flechebas{border: 9px solid transparent;width: 0px;position: absolute;left: 65px;border-top:9px solid rgb(69,231,194);margin-top: -10px;}
 	.flechedroite{border: 12px solid transparent;width: 0px;position: absolute;left: 140px;border-left: 9px solid rgb(216, 216, 216);top: 12px;}
 
-#popup{position: absolute;top: 0px;height: 700px;width: 100%;
+#popup{position: fixed;top: 0px;height: 700px;width: 100%;
 background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 	.exit{font-size:65px;float: right;cursor:pointer;z-index: 50;}
 	#inpopup{background:white;margin:10%;width:80%;}
@@ -30,16 +31,19 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		#inpopup .awsm,#inpopup input{vertical-align:middle;}
 		
 		#inpopup form{display:inline-block;}
-		#chitem{  display: inline-block;  margin-left: 40px;  width: 40%;}
+		#chitem{  display: inline-block;  margin-left: 40px;  width: 30%;}
 		
-#corps{padding-left:150px;}	
+#corps{padding-left:160px;min-height:600px;}	
 	.classe{background:rgb(236,76,76);}
-	h3.classe {height:87px;font-size:78px;cursor:pointer;} 
-	.neweval  h3,.classes h3,.evals h3,.items h3{background:rgb(216, 216, 216);opacity:0.5;}
+	#titre h3{overflow:hidden;display:none;padding:10px 0px;font-size:46px;} 
+	#classe,#evalchx{cursor:pointer;}
+	#corps.evaluer h3,#corps.synthese h3,#corps.correction h3{display:block;}
+	#titre .awsm{margin:0px 20px;}
 	
 	
 	
-	h1{text-align:center;font-size: 35px;padding: 30px 0px;}
+	body h1{text-align:center;font-size:46px;margin: 0px;
+  padding: 10px;}
 	
 	#contenu{background:white;padding: 5px;margin: 10px;}
 		h4{display:inline-block;margin: 5px;padding: 5px;}
@@ -51,8 +55,12 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 
 
 /*******************Evaluer*************/
+	
+	
 	#cases{background:white;}
 	.evaluer article{display:inline-block;border:1px solid black;height: 130px;width: 140px;font-size:23px;text-align:center;cursor:pointer;}
+	[draggable] { -moz-user-select: none; -khtml-user-select: none;
+    -webkit-user-select: none; user-select: none;}
 	.evaluer .perso{font-size: 33px;}
 	.evaluer .nom{height:40px;font-size: 20px;word-wrap: break-word;hyphens: auto;word-break: break-all;-webkit-hyphens: auto;-moz-hyphens: auto;	  -ms-hyphens: auto;-o-hyphens: auto;}
 	.evaluer .taxo{margin:4px 0px;}
@@ -60,6 +68,7 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 	.evaluer .prctg{font-size: 23px;font-weight: bold;}
 
 	.optaff{background:rgb(255,233,111);}
+	
 	
 	.inputresult article{width:250px;display: inline-block;height: 135px;border:1px solid rgb(117,154,198);padding:0px 1px;}
 		.inputresult h5{margin:0px;font-size: 15px;text-align: center;background:rgb(69,231,194);}
@@ -69,22 +78,21 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		.inputresult aside div {margin: 2px;font-size: 12px;height:26px;overflow:hidden;}
 		.input div{display:inline-block;width:71px;border-radius:30px;padding:5px;text-align: center;cursor:pointer;margin:1px;font-size: 25px;
 		-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;}
+		.optaffchx input{width:230px;}
 			.input div:hover,.input div.actif{color:white;}
-			.input div:nth-child(1) {background: #ff0000;}
+			.input div:nth-child(1) {background: #00ff00;}
 			.input div:nth-child(2) {background: #FF9C19;}
-			.input div:nth-child(3) {background: #00ff00;}
+			.input div:nth-child(3) {background: #ff0000;}
 		
 			
 /*******************Evaluations*************/	
 	.evals,.neweval{background: rgb(216,216,216);}
-	.evals #fleche,.neweval #fleche{top: 190px;border-right: 11px solid rgb(216,216,216);}
 
 	.evals .titre{width:244px;overflow:hidden;display:inline-block;}
 	
 	
 /*******************Classes*************/	
 	.classes{background: rgb(216,216,216);}
-	.classes #fleche{top: 76px;border-right: 11px solid rgb(216,216,216);}
 	
 	.items h4,.classes h4,.evals h4{margin: 0px 80px 0px 36px;}
 	
@@ -98,16 +106,18 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		#popup ul ul{margin-left: 20px;}
 		.classes ul ul{-webkit-column-count: 2;-webkit-column-gap: 150px;-moz-column-count: 2;-moz-column-gap: 150px;}
 	li .awsm:hover{color:rgb(117, 154, 198);}
+	li.actif{color:rgb(117, 154, 198);}
 	
 	.classes ul ul{counter-reset: numele;}
 	.classes ul ul li{}
 	.classes ul ul li:before{ counter-increment: numele;
-			 content:counter(numele) ". ";}		
+			 content:counter(numele) ". ";}	
+			 
 /*******************synthese*************/		
-	.synthese{background: rgb(117,154,198);}
-	.synthese #fleche{top: 124px;border-right: 11px solid #EC4C4C;}
+	.synthese{background: rgb(236, 76, 76);/* 117,154,198 */}
 	
-	#listeleve{padding-top:30px;top: 263px;position: absolute;width:196px;z-index: 45;background:rgba(255,255,255,0.5);}
+	
+	#listeleve{padding-top:30px;top: 216px;position: absolute;width:196px;z-index: 45;background:rgba(255,255,255,0.5);}
 		#listeleve h5,#domain div{height:30px;border-bottom:1px solid black;}
 		#listeleve h5{background:rgb(255,255,255);}
 		
@@ -167,24 +177,27 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 	
 	
 	form .titre,form .add{font-size:20px;font-weight:bold;margin:10px 0px;}
+	form .add{cursor:pointer;}
 	.titre label{width:130px;}
 	form h4,input[type="submit"],#creer{display:inline-block;padding: 8px;background:rgb(96,96,96);font-size:20px;color:white;cursor:pointer;}
 	input[type="submit"]{float:right;border-radius:0px;margin-right: 50px;cursor:pointer;}
 	form section{display:inline-block;border:1px solid black;margin:4px;padding:5px;}
 		form section div{margin:8px 0px;}
-			form label{width: 220px;display: inline-block;text-align:right;}
+			form label{width: 240px;display: inline-block;text-align:right;  vertical-align: middle;}
 
-	
-		select,input{text-align: center;width:300px;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;border-radius:2px;margin-left:20px;background: rgb(216, 216, 216);border:none;padding: 3px 0px;}
-			select:hover,input:hover{box-shadow:0px 0px 5px blue;}
+		label+select,label+input{margin-left: 5px;
+  vertical-align: middle;}
+		 select, input{text-align: center;width:300px;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;border-radius:2px;margin-left:20px;background: rgb(216, 216, 216);border:none;padding: 3px 0px;  }
+			select:hover,input:hover,input.actif{box-shadow:0px 0px 5px blue;}
 			select option:nth-child(2)[selected^="true"] {background:blue;}	
-		select{width:117px;}		
+		select{width:130px;}		
 		input[type="number"]{width:50px;}
-		input[type="date"]{width:180px;}	
+		input[type="date"]{width:190px;}	
 		form .awsm{vertical-align: bottom;margin-left:5px;cursor:pointer;}		
 /*******************login*************/
-
-
+	.login{background: rgb(216,216,216);}
+	.login section{border:none;}
+	.login select{width:300px;}
 
 
 

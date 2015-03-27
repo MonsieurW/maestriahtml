@@ -22,7 +22,7 @@
 		<br/>
 		<h3><a href="evals.html">EVALUATIONS</a></h3>
 	
-		<h3 class="eval">CORRECTION</h3>
+		<h3 class="eval"><a href="correction.html">CORRECTION</a></h3>
 		<br/>
 		<h3><a href="items.html">ITEMS PEDA</a></h3>
 		
@@ -35,60 +35,48 @@
 		<section id="inpopup">
 		</section>
 	  </section>
-	  <section id="corps" class="classes">
-	
-			<section id ="titre">
+	  <section id="corps" class="evals">
+	<section id ="titre">
 			<h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
-			
-			<h1>GESTION DES CLASSES</h1>
+			<h1>GESTION DES EVALUATIONS</h1>
 				
 		</section>
 		<section id ="contenu" >
 			<div>
-				<h4>CLASSES</h4><h4>ELEVES</h4>
+				<h4>EVALUATIONS</h4><h4>DATES</h4>
 			</div>	
 			<ul>
-			</ul>
+				
+		</ul>
 				
 		</section>
 	  </section>
 	</BODY>
 	 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="maestria.js"></script>
-<script>
-/////////////////////Données exemple
-
-
-
-///////////////////////Fonctions
-
-//générer la liste des classes et des élèves
-list='';
-for(IDclas in classes){
-	cl=classes[IDclas];
-	var c=Object.keys(cl).length-1;
-	list+='<li>'+cl['nom']+ic_list1+'</li><ul>';
-	for(i=1;i<c;i++){	
-		list+='<li>'+cl[i][1]+ic_list1+'</li>';	
+	
+	
+	<script>
+	/*Reste à faire:
+	-envoyer l'ID de la page à modifier à la page neweval */
+	
+	
+	
+	
+	
+	ic_list2='<span class="awsm del">&#xf1f8;</span><a href="neweval.html"><span class="awsm edit">&#xf040;</span></a>';
+	//list_item('#chitem',false,ic_list2);
+	
+	
+	list='';
+	for(var i in evals2){
+	list+='<li data-ideval="'+i+'"><span class="titre">'+evals2[i][0]+'</span><span class="date">'+evals2[i][1]+'</span>'+ic_list2+'</li>';
 	}
-	list+='<span class="awsm add" title="Ajouter élève">&#xf0fe;</span></ul>';
-}
-list+='<span class="awsm add" title="Ajouter classe">&#xf0fe;</span>';
-$('ul').html(list);
-
-
-//Gestion du bouton pr ajouter classe ou élève
-$('.classes .add').on('click', function(){
-niveau=$(this).parents('ul').length;
- if(niveau==2){
-	$(this).before('<li><input type="text" placeholder="Nouvel élève"></li>');}
-else{
-	$(this).before('<li><input type="text" placeholder="Nouvelle classe"></li>');}
-
-});
-
-</script>	
-	<script src="interaction.js"></script>	
+	list+='<a href="neweval.html"><span class="awsm add" title="Ajouter évaluation">&#xf0fe;</span></a>';
+	$('ul').html(list);
 	
 	
+
+	</script>
+		<script src="interaction.js"></script>	
 </HTML>	

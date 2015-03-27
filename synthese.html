@@ -1,0 +1,315 @@
+<!DOCTYPE HTML >
+<HTML>
+   <HEAD>
+      <TITLE>Maestria</TITLE>
+	  <link href="maestria.css" rel="stylesheet" type="text/css">
+	  <link href="../commun/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	  <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+   </HEAD>
+   <BODY>
+      <header>
+	  <a href="index.html">Maestria</a>  Evaluer c'est connaître et comprendre c'est progresser
+		<div id="logzone">
+			<div class="login">Albert Einstein</div>
+			<div class="logout">DECONNEXION</div>
+		</div>
+	  </header>
+	 <nav>
+	
+		<h3><a href="classes.html">CLASSES</a></h3> 
+		<h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+		<br/>
+		<h3><a href="evals.html">EVALUATIONS</a></h3>
+	
+		<h3 class="eval">CORRECTION</h3>
+		<br/>
+		<h3><a href="items.html">ITEMS PEDA</a></h3>
+		
+		<footer>
+			<a href="">Contact</a>
+			<a href="metaphysik.fr">Metaphysik</a>
+		</footer>	
+	  </nav>
+	   <section id="popup">
+		
+		<section id="inpopup">
+			
+		</section>
+	  </section>
+	  <section id="corps" class="synthese">
+	
+			<section id ="titre">
+			<h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
+			<h1>SYNTHESE</h1>
+				
+		</section>
+		<section id ="contenu" >
+				<section id="listeleve">
+			
+			
+			
+			<h5>MOYENNE </h5>
+			<h5>ECART-TYPE </h5>
+		</section>
+		<section id="domain" class="">
+			
+		</section>
+	  </section>
+	</BODY>
+	 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="maestria.js"></script>
+	<script>
+
+/////////////////Données exemple
+synthese_classe={ //ranger les éleve dans l'ordre alphabetique
+	32:[
+		[3201,'Nicolass',90],//ID, nom, nombre nécessaire à la coloration de son icone
+		[3202,'Allann Wauters de Besterfeld',80],
+		[3203,'Nanana Cerise',70],
+		[3204,'Bertrand',60],
+		[3205,'Alizé',50],
+		[3206,'Massilia',45],
+		[3207,'Ernest',40],
+		[3209,'Biroute',30],
+		[3210,'Julien',20],
+		[3211,'Maxime',10],
+		[3212,'Laurent',00],
+		[3213,'Catherine',95],
+		[3214,'Le Suisse',100],
+		[3215,'Berthe aux grands pieds',80],
+		[3216,'Bruno',90],
+		[3217,'Phillipe',2],
+		[3218,'Kuntakinté',80],
+		[3219,'Zoubida',90]	
+		],	
+	33:[
+		[331,'Mohammed',90],
+		[332,'Bachibouzouk',80],
+		[333,'Cunégonde',90]
+		]
+	};
+	
+
+	//dépend de la classe	
+synthese_domaine={
+	"1":["Physique",
+				//[graphe,moyenne] (dans l'ordre alphabetique
+			['Graphe',30],['Graphe',80],['Graphe',80],
+			['Graphe',50],['Graphe',30],['Graphe',52],
+			['Graphe',50],['Graphe',30],['Graphe',80],
+			['Graphe',50],['Graphe',30],['Graphe',80],
+			['Graphe',50],['Graphe',30],['Graphe',80],
+			['Graphe',50],['Graphe',30],['Graphe',80],['Graphe',50],['Graphe',50]
+	],
+	"2":["Chimie",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',80],['Graphe',50],['Graphe',50]
+	],
+	"3":["Savoir-faire",
+				['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],['Graphe',50],['Graphe',50]
+	],
+	"4":["Attitude",
+				['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],['Graphe',50],['Graphe',50]
+	],
+	"5":["Résumé",
+				['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],['Graphe',50],['Graphe',50]
+	]
+	};
+synthese_theme={	
+	"5-1":["Connaître",
+				['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50]
+	],
+	"5-2":["Comprendre",
+				['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50]
+	],	
+	"5-3":["Appliquer",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',50],['Graphe',30],['Graphe',80]
+	],
+	"5-4":["Analyse",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',50],['Graphe',30],['Graphe',80]
+	],
+	"5-5":["Puissance",
+			['Graphe',19],['Graphe',16],['Graphe',12],
+			['Graphe',8],['Graphe',17],['Graphe',15],
+			['Graphe',20],['Graphe',8],['Graphe',13],
+			['Graphe',16],['Graphe',18],['Graphe',14],
+			['Graphe',12],['Graphe',18],['Graphe',50],
+			['Graphe',5],['Graphe',8],['Graphe',20]
+	],
+	"5-6":["Découpage",
+			['Graphe',16],['Graphe',18],['Graphe',14],
+			['Graphe',12],['Graphe',18],['Graphe',50],
+			['Graphe',5],['Graphe',8],['Graphe',20],
+			['Graphe',19],['Graphe',16],['Graphe',12],
+			['Graphe',8],['Graphe',17],['Graphe',15],
+			['Graphe',20],['Graphe',8],['Graphe',13]
+	],
+	"2-2":["Corps pur",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',50],['Graphe',30],['Graphe',80]
+	],
+	"2-1":["Acidité",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',50],['Graphe',30],['Graphe',80]
+	]
+	
+};//On génerera des ID artificiels pr la partie résumé	
+
+synthese_item={
+"2-1-1":["Ions H+",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',50],['Graphe',30],['Graphe',80]
+	],
+	"2-1-2":["Ions OH-",
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',52],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',30],['Graphe',80],['Graphe',50],
+			['Graphe',50],['Graphe',30],['Graphe',80]
+	]};
+
+/////////////////////////////////////Fonctions
+gen_list_elv(IDclasse);
+text="";
+for(var i in synthese_domaine){
+	text+=colonne_rslt(synthese_domaine,i);
+	
+}	
+$('#domain').prepend(text);	
+	//Accordéon 
+	$('.synthese article').hide();
+	//accordéon
+$('#domain').on('click','section:not(article article section)', function(){
+txt="";
+	if($(this).is('article section')){
+		$('.ouvert2+article').fadeOut();
+		if($(this).hasClass('ouvert2')){
+		
+			$(this).removeClass('ouvert2').siblings('section').slideDown();
+		}
+		else{
+			$('.ouvert1+article section').removeClass('ouvert2');
+			$(this).addClass('ouvert2').siblings('section').slideUp();
+			if(!$(this).next('article').length){
+				id=$(this).data('id');
+				for(var i in synthese_item){split=i.split('-');
+					if(split[0]+'-'+split[1]==id){
+						txt+=colonne_rslt(synthese_item,i);
+					}
+				}
+				$(this).after('<article>'+txt+'</article>');
+			}
+			for(var i in synthese_item){split=i.split('-');
+				if((split[0]+'-'+split[1])==id){
+					txt+=colonne_rslt(synthese_item,i);
+				}
+			}
+			$(this).next('article').delay(500).fadeIn();
+		}
+	}
+	else{$('article').fadeOut();
+		if($(this).hasClass('ouvert1')){
+			$(this).removeClass('ouvert1').siblings('section').slideDown();
+		}
+		else{
+			$('section').removeClass('ouvert1');
+			$(this).addClass('ouvert1').siblings('section').slideUp();
+			if(!$(this).next('article').length){
+				id=$(this).data('id');
+				for(var i in synthese_theme){split=i.split('-');
+					if(split[0]==id){
+						txt+=colonne_rslt(synthese_theme,i);
+					}
+				}
+				$(this).after('<article>'+txt+'</article>');
+			}
+		$(this).next('article').fadeIn();
+		
+		}	
+	}
+});
+function gen_list_elv(IDclasse){
+	txt="";
+	s=synthese_classe[IDclasse];tt=s.length;
+	
+	for(var i=0;i<tt;i++){
+		txt+='<h5><span class="awsm" style="color:background:rgb(0,'+couleur(s[i][2])+')">&#xf007;</span>'+s[i][1]+'</h5>';	
+	}
+	$('#listeleve').prepend(txt);
+}
+
+function colonne_rslt(tableau,IDitem){
+	s=tableau[IDitem];tt=s.length;
+	var txt='<section data-id="'+IDitem+'"><h6>'+s[0]+'</h6>';
+	for(i=1;i<tt;i++){	
+		txt+='<div><span>'+s[i][1]+'%</span><aside>'+s[i][0]+'</aside></div>';
+		}
+	txt+='</section>';
+	return txt;
+	
+}	
+
+
+
+
+
+
+
+
+
+	</script>
+	
+	
+</HTML>	

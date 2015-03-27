@@ -9,7 +9,7 @@
    </HEAD>
    <BODY>
       <header>
-	  <a href="index.html">Maestria</a>  Evaluer c'est connaÃ®tre et comprendre c'est progresser
+	  <a href="index.html">Maestria</a>  Evaluer c'est connaître et comprendre c'est progresser
 		<div id="logzone">
 			<div class="login">Albert Einstein</div>
 			<div class="logout">DECONNEXION</div>
@@ -21,10 +21,9 @@
 		<h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
 		<br/>
 		<h3><a href="evals.html">EVALUATIONS</a></h3>
-		<h3 class="eval">PUISSANCE</h3><div class="flechebas"></div>
-		<h3 class="eval">CORRECTION</h3>
+		<h3 class="eval"><a href="correction.html">CORRECTION</a></h3>
 		<br/>
-		<h3><a href="items.html">ITEMS PEDA</a></h3>
+		<h3><a href="items.html">ITEMS PEDA </a></h3>
 		
 		<footer>
 			<a href="">Contact</a>
@@ -36,10 +35,9 @@
 		</section>
 	  </section>
 	  <section id="corps" class="items">
-		<div id="fleche"></div>
-		<section id ="titre">
-			<h3 class="classe">3<sup>2</sup></h3>
-			<h1>ITEMS PEDAGOGIQUES</h1>
+			<section id ="titre">
+			<h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
+			<h1>GESTION DES ITEMS PEDAGOGIQUES</h1>
 				
 		</section>
 		<section id ="contenu" >
@@ -57,7 +55,7 @@
 	<script src="maestria.js"></script>
 	<script>
 
-	list_item('ul',true);
+	list_item('ul',true,ic_list1,false);
 	
 
 //////Ajout d'une zone input lors des clicks sur plus	
@@ -67,7 +65,7 @@
 			$(this).before('<li><input type="text" placeholder="Nouvel item"></li>');
 		}
 		else if(niveau==2){
-			$(this).before('<li><input type="text" placeholder="Nouveau thÃ¨me"></li>');}
+			$(this).before('<li><input type="text" placeholder="Nouveau thème"></li>');}
 		else{
 			$(this).before('<li><input type="text" placeholder="Nouveau domaine"></li>');}
 

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <TITLE>Maestria</TITLE>
+	  <link href="maestria.css" rel="stylesheet" type="text/css">
+	  <link href="../commun/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	  <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+   </HEAD>
+   <BODY>
+      <header>
+	  <a href="index.html">Maestria</a>  Evaluer c'est connaître et comprendre c'est progresser
+		<div id="logzone">
+			<div class="login">Albert Einstein</div>
+			<div class="logout">DECONNEXION</div>
+		</div>
+	  </header>
+	  <nav>
+	
+		<h3><a href="classes.html">CLASSES</a></h3> 
+		<h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+		<br/>
+		<h3><a href="evals.html">EVALUATIONS</a></h3>
+		
+		<h3 class="eval"><a href="correction.html">CORRECTION</a></h3>
+		<br/>
+		<h3><a href="items.html">ITEMS PEDA</a></h3>
+		
+		<footer>
+			<a href="">Contact</a>
+			<a href="http://metaphysik.fr">Metaphysik</a>
+		</footer>	
+	  </nav>
+		<section id="popup">		
+			<section id="inpopup">
+			
+			</section>
+		</section>
+	  </section>
+	  <section id="corps" class="login">
+		<div id="fleche"></div>
+		<section id ="titre">
+			
+			<h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
+			
+			<h1>INSCRIPTION</h1>
+		</section>
+		<section id ="contenu" >
+			<form>		
+				<section>
+					<div><label for="nom">NOM</label><input name="nom" id="nom" placeholder="Albert Einstein" value=""></div>
+					<div><label for="mail">ADRESSE MAIL</label><input name="mail" id="mail" placeholder="adressedAlbert@metaphysik.fr" value=""></div>
+					<div><label for="mdp1">MOT DE PASSE</label><input name="mdp1" id="mdp1" type="password" value=""></div>
+					<div><label for="mdp2">REPETITION MOT DE PASSE</label><input name="mdp2" id="mdp2" type="password" value=""></div>
+					<div><label for="UAI">CODE ETABLISSEMENT(UAI)</label><input name="UAI" id="UAI"  value=""></div>
+				</section>
+				<section>
+					Les items suivants sont facultatifs, ils permettront d'accéder plus rapidement aux différents outils proposés.
+					<div id="facultatif">
+						<div><label for="niveau">NIVEAU D'ENSEIGNEMENT</label><select name="niveau" id="niveau">
+							<option value="1" >Crêche</option>
+							<option value="2">Maternelle</option>
+							<option value="3">Primaire</option>
+							<option value="4">Collège</option>
+							<option value="5">Lycée</option>
+							<option value="6">Supérieur</option>
+						</select></div>
+						
+					</div>
+				</section>	
+			<input id="creer" type="submit" value="ENREGISTRER" />
+			</form>		
+			
+			
+		</section>
+	  </section>
+	</BODY>
+	 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="maestria.js"></script>
+<script>
+	niveaux={
+	1:["Crèche",0],
+	2:["Maternelle",0],
+	3:["Primaire",0],
+	4:["Collège",{
+			13:["Arts plastiques",0],
+			1:['Anglais',0],
+			2:['Allemand',0],
+			3:['EPS',0],
+			4:['Espagnol',0],
+			5:['Français',0],
+			6:['Histoire-Géo',0],
+			7:['Latin',0],
+			8:['Mathématiques',0],
+			
+			9:['Musique',0],
+			14:['Sciences Physiques',1],
+			10:['SVT',0],
+			11:['Technologie',0]
+			}
+		],	
+			
+	5:["Lycée",{
+			1:['Anglais',0],
+			2:['Allemand',0],
+			3:['EPS',0],
+			12:['Economique et social',0],
+			4:['Espagnol',0],
+			5:['Français',0],
+			6:['Histoire-Géo',0],
+			7:['Latin',0],
+			8:['Mathématiques',0],
+			14:['Sciences Physiques',1],
+			10:['SVT',0],
+			}],
+	6:["Supérieur",0]
+	};
+$("#niveau").change(function () {
+	idniv=$("#niveau option:selected").val();
+	if(idniv>3){	
+	list='<div class="discipline"><label for="discipline">DISCIPLINE ENSEIGNEE</label><select name="discipline" id="discipline">';
+	n=niveaux[idniv][1];
+		for(key in n){
+				list+='<option value="'+key+'">'+n[key][0]+'</option>';
+			}	
+	list+='</select></div>';
+	$('#facultatif').append(list);
+	}
+	else{
+		if(niveaux[idniv][1]==0){
+		proposition();
+		}
+	}
+});
+$("#facultatif").on('change','#discipline',function () {
+	iddis=$("#discipline option:selected").val();console.log(iddis);
+	if(niveaux[idniv][1][iddis][1]==0){
+		proposition();
+	}
+});	
+	
+function proposition(){	
+	text="Nous n'avons pas de modérateur pour élaborer une grille d'items dans cette matière, voudrais-tu nous apporter tes lumières sur le sujet?";
+		text+='<div><label for="adminitem">JE VEUX ETRE MODERATEUR</label><select name="adminitem" id="adminitem"><option value="1" selected="selected">Non</option><option value="2">Oui</option></select></div>';
+		$('#facultatif').append(text);
+}
+
+	
+	</script>
+</HTML>	

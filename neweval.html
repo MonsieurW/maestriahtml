@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <TITLE>Maestria</TITLE>
+	  <link href="maestria.css" rel="stylesheet" type="text/css">
+	  <link href="../commun/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	  <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+   </HEAD>
+   <BODY>
+      <header>
+	  <a href="index.html">Maestria</a>  Evaluer c'est connaître et comprendre c'est progresser
+		<div id="logzone">
+			<div class="login">Albert Einstein</div>
+			<div class="logout">DECONNEXION</div>
+		</div>
+	  </header>
+	  <nav>
+	
+		<h3><a href="classes.html">CLASSES</a></h3> 
+		<h3 class="synthese"><a href="synthese.html">SYNTHESE</a></h3>
+		<br/>
+		<h3><a href="evals.html">EVALUATIONS</a></h3>
+
+		<h3 class="eval">CORRECTION</h3>
+		<br/>
+		<h3><a href="items.html">ITEMS PEDA</a></h3>
+		
+		<footer>
+			<a href="">Contact</a>
+			<a href="metaphysik.fr">Metaphysik</a>
+		</footer>	
+	  </nav>
+	  <section id="popup">
+		<section id="inpopup">
+		</section>
+	  </section>
+	  <section id="corps" class="neweval">
+	<section id ="titre">
+			<h3 class="classe">CLASSE <span class="awsm"> &#xf0da; </span> <span id="classe">3<sup>2</sup></span></h3>
+			<h1>PARAMETRES DE L'EVALUATION</h1>
+				
+		</section>
+		<section id ="contenu" >
+		<form>	
+			<div class="titre">
+				
+			</div>	
+				
+		<div id="questions"><h4 >QUESTIONS</h4></div>		
+				
+				<div class="add"><span class="awsm" title="Ajouter évaluation">&#xf0fe; </span> AJOUTER QUESTION</div>
+				
+				<input id="creer" type="submit" value="ENREGISTRER" />
+			</form>
+		</section>
+	  </section>
+	</BODY>
+	 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="maestria.js"></script>
+	<script>
+	
+
+	evalchoisie="222";
+	
+	
+	if(evalchoisie==""){//en cas de nouvelle évaluation
+		add_titre(false);
+		add_sectinput(1,4,false);
+	}
+	else{//En cas de modification d'évaluation
+		add_titre(true,evals[evalchoisie]);
+		add_sectinput(1,7,true,evals[evalchoisie]);
+	}
+	
+
+var s=' selected="selected"';
+function add_titre(cd,tab){
+	if(cd==false){tab={"nom":"","date":""};}
+	
+	titres='<h4 style="margin-top: -8px;">INFOS</h4><label for="title" class="titrant">TITRE</label><input name="title" id="title" value="'+tab["nom"]+'"><label for="date">DATE</label><input name="date" type="date" id="date" value="'+tab["date"]+'">';
+	$('.titre').html(titres);
+}
+function add_sectinput(deb,fin,cd,tab){
+
+list='';		
+	for(i=deb;i<=fin;i++){
+	if(cd==false){tab=[];tab[i]=["","","","","",""];}
+	list+='<section><div><label for="q'+i+'_title">TITRE</label><input name="q'+i+'_title" id="q'+i+'_title" placeholder="Titre de la question '+i+'" value="'+tab[i][1]+'"></div><div><label for="q'+i+'_taxo">NIVEAU TAXONOMIQUE</label><select name="q'+i+'_taxo" id="q'+i+'_taxo"><option value="1"';
+	if(tab[i][3]==1){list+=s;}
+	list+='>Connaissance</option><option value="2"';
+	if(tab[i][3]==2){list+=s;}
+	list+='>Compréhension</option><option value="3"';
+	if(tab[i][3]==3){list+=s;}
+	list+='>Application</option><option value="4"';
+	if(tab[i][3]==4){list+=s;}
+	list+='>Analyse</option></select></div><div><label for="q'+i+'_note">POINTS</label><input type="number" name="q'+i+'_note" id="q'+i+'_note" min="0" placeholder="0" value="'+tab[i][2]+'"></div><div><label for="q'+i+'_item1"><span class="awsm">&#xf19d; </span>CONNAISSANCE</label><input name="q'+i+'_item1" id="q'+i+'_item1" placeholder="A choisir parmi les items pédagogiques" value="'+tab[i][4]+'"><span class="awsm chitem">&#xf0b1;</span></div><div><label for="q'+i+'_item2"><span class="awsm">&#xf085; </span>SAVOIR-FAIRE OU ATTITUDE</label><input name="q'+i+'_item2" id="q'+i+'_item2"placeholder="A choisir parmi les items pédagogiques" value="'+tab[i][5]+'"><span class="awsm chitem">&#xf0b1;</span></div></section>';
+	idernier=i;
+	}
+	$('.add').before(list);
+}
+$('.add').on('click', function(){
+add_sectinput(idernier+1,idernier+1,false);	
+});	
+
+$('#contenu').on('click','.chitem', function(){	
+idquestion='#'+$(this).prev('input').attr('id');
+idit=$(this).prev('input').data('id');
+iditem=(idit!=undefined)?idit :false;console.log(iditem);
+genererpopup("optaff","CHOISIR L'ITEM",'itemchx">','Double-clique pour choisir un item<ul></ul>');
+content=list_item('ul',false,"",iditem);
+	
+});	
+
+$('#inpopup').on('dblclick','.itemchx ul ul ul li', function(){	
+iditem=$(this).data('id');
+nomitem=$(this).html();console.log(nomitem);
+$(idquestion).attr('value',nomitem).attr('data-id',iditem);
+$('#popup').slideUp();
+});		
+	
+	</script>
+	
+<script src="interaction.js"></script>		
+</HTML>	

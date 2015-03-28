@@ -51,7 +51,7 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		.boutons h4{background:rgb(216, 216, 216);cursor:pointer;}	
 		.boutons h4.actif{color:grey;}
 		
-.awsm,option span{font-family: FontAwesome;text-align:center;font-weight: normal;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;}	
+.awsm,option span{font-family: FontAwesome;text-align:center;font-weight: normal;}	
 .awsm:hover{opacity:0.8;}
 	
 

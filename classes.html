@@ -57,7 +57,43 @@
 	<script src="maestria.js"></script>
 <script>
 /////////////////////Données exemple
-
+//sert pour la page index et classe (certaines infos ne sont pas nécessaires pour la page classe)
+classes={
+	31:{                                                             //ID classe
+			'nom':'3<sup>1</sup>',
+		
+			//ID:[nom,mdp
+			3101:['Allan Wauters de Besterfeld','mdp1'],
+			3102:['Nana Cerise','mdp2'],
+			3103:['Nicolas','mdp3']		
+		},
+	32:{
+		'nom':'3<sup>2</sup>',
+		3201:['Nicolass','mdp'],
+		3202:['Allann Wauters de Besterfeld','mdp2'],
+		3203:['Nanana Cerise','mdp'],
+		3204:['Bertrand','mdp3'],
+		3205:['Alizé','mdp4'],
+		3206:['Massilia','mdp'],
+		3207:['Ernest','mdp'],
+		3209:['Biroute','mdp'],
+		3210:['Julien','mdp'],
+		3211:['Maxime','mdp'],
+		3212:['Laurent','mdp'],
+		3213:['Catherine','mdp'],
+		3214:['Le Suisse','mdp'],
+		3215:['Berthe aux grands pieds','mdp'],
+		3216:['Bruno','mdp'],
+		3217:['Phillipe','mdp'],
+		3218:['Kuntakinté','mdp'],
+		3219:['Zoubida','mdp']	
+		},
+	33:{
+		'nom':'3<sup>3</sup>',
+		331:['Mohammed','mdp'],
+		332:['Bachibouzouk','mdp'],
+		333:['Cunégonde','mdp']}
+};	
 
 
 ///////////////////////Fonctions
@@ -66,10 +102,11 @@
 list='';
 for(IDclas in classes){
 	cl=classes[IDclas];
-	var c=Object.keys(cl).length-1;
 	list+='<li data-idclas="'+IDclas+'">'+cl['nom']+ic_list1+'</li><ul>';
-	for(i=1;i<c;i++){	
-		list+='<li data-idelv="'+cl[i][0]+'">'+cl[i][1]+ic_list1+'</li>';	
+	for(var i in cl){
+		if(i!='nom'){
+			list+='<li data-idelv="'+i+'">'+cl[i][0]+ic_list1+'</li>';
+		}
 	}
 	list+='<span class="awsm add" title="Ajouter élève">&#xf0fe;</span></ul>';
 }
@@ -88,14 +125,23 @@ else{
 });
 
 $('.classes').on('click','.ajoutclasse .awsm', function(){
-	newclasse=$(this).prev('input').val();console.log(newclasse);
+	newclasse=$(this).prev('input').val();
 	//pr creer le nvel ID de la classe, j'increment le dernier ID
 	IDnewclasse=parseInt(Object.keys(classes).pop())+1;
-	console.log(IDnewclasse);
 	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
 	classes[IDnewclasse]={'nom':newclasse};
-	console.log(classes);
 	$(this).parent('li').before('<li data-idclas="'+IDnewclasse+'">'+newclasse+ic_list1+'</li><ul>').remove();
+});
+$('.classes').on('click','.ajoutelv .awsm', function(){
+	IDclasse=$(this).parents('ul ul').prev('li').data('idclas');
+	newelv=$(this).prev('input').val();
+	//pr creer le nvel ID de l'eleve, je bidouille, mais tu trouveras un meilleur systeme
+	IDnewelv=String(IDclasse)+Object.keys(classes[IDclasse]).length;
+	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
+	console.log(IDnewelv);
+	classes[IDclasse][IDnewelv]=[newelv,'mdpbidon'];
+	console.log(classes[IDclasse]);
+	$(this).parent('li').before('<li data-idelv="'+IDnewelv+'">'+newelv+ic_list1+'</li><ul>').remove();
 });
 </script>	
 	<script src="interaction.js"></script>	

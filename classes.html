@@ -89,8 +89,13 @@ else{
 
 $('.classes').on('click','.ajoutclasse .awsm', function(){
 	newclasse=$(this).prev('input').val();console.log(newclasse);
-	
-	$(this).before('').parent('li').remove();
+	//pr creer le nvel ID de la classe, j'increment le dernier ID
+	IDnewclasse=parseInt(Object.keys(classes).pop())+1;
+	console.log(IDnewclasse);
+	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
+	classes[IDnewclasse]={'nom':newclasse};
+	console.log(classes);
+	$(this).parent('li').before('<li data-idclas="'+IDnewclasse+'">'+newclasse+ic_list1+'</li><ul>').remove();
 });
 </script>	
 	<script src="interaction.js"></script>	

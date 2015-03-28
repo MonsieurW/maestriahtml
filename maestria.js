@@ -4,6 +4,8 @@
 IDeval=111;
 IDclasse=32;
 results={};
+check='<span class="awsm">&#xf00c;</span>';
+
 
 //Sert à chaque fois qu'on peut changer de classe
 ttes_classes={31:'3<sup>1</sup>',32:'3<sup>2</sup>',33:'3<sup>3</sup>'};
@@ -155,7 +157,7 @@ list='';
 for(var i in items){
 	list+='<li data-id="'+i+'"';
 	list+=(split[0]==i)?' class="actif"' :'';
-	list+='>'+items[i]['nom']+ic_list+'</li>';
+	list+='><span>'+items[i]['nom']+'</span>'+ic_list+'</li>';
 	var c=Object.keys(items[i]).length;
 	if(c>1){
 		list+=(split[0]==i)?'<ul style="display:block">' :'<ul>';
@@ -163,7 +165,7 @@ for(var i in items){
 			if(j!="nom"){
 				list+='<li data-id="'+i+'-'+j+'"';
 						list+=(split[1]==j)?' class="actif"' :'';
-						list+='>'+items[i][j][0]+ic_list+'</li>';
+						list+='><span>'+items[i][j][0]+'</span>'+ic_list+'</li>';
 				d=items[i][j][1];
 				if(d!=undefined){
 					list+=(split[1]==j)?'<ul style="display:block">' :'<ul>';
@@ -171,7 +173,7 @@ for(var i in items){
 					for(var k=0;k<dl;k++){
 						list+='<li data-id="'+i+'-'+j+'-'+k+'"';
 						list+=(parseInt(split[2])===k)?' class="actif"' :'';
-						list+='>'+d[k]+ic_list+'</li>';
+						list+='><span>'+d[k]+'</span>'+ic_list+'</li>';
 					}
 					if(add){list+='<span class="awsm add" title="Ajouter item">&#xf0fe;</span>';}
 					list+='</ul>';

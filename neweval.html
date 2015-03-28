@@ -107,14 +107,14 @@ $('#contenu').on('click','.chitem', function(){
 idquestion='#'+$(this).prev('input').attr('id');
 idit=$(this).prev('input').data('id');
 iditem=(idit!=undefined)?idit :false;console.log(iditem);
-genererpopup("optaff","CHOISIR L'ITEM",'itemchx">','Double-clique pour choisir un item<ul></ul>');
-content=list_item('ul',false,"",iditem);
+genererpopup("optaff","CHOISIR L'ITEM",'itemchx">','Chek pour choisir<ul></ul>');
+content=list_item('ul',false,check,iditem);
 	
 });	
 
-$('#inpopup').on('dblclick','.itemchx ul ul ul li', function(){	
-iditem=$(this).data('id');
-nomitem=$(this).html();console.log(nomitem);
+$('#inpopup').on('click','.itemchx ul ul ul li .awsm', function(){	
+iditem=$(this).parent('li').data('id');
+nomitem=$(this).prev('span').html();
 $(idquestion).attr('value',nomitem).attr('data-id',iditem);
 $('#popup').slideUp();
 });		

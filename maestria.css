@@ -19,8 +19,8 @@ nav{position:absolute;height:600px;width: 140px;padding-left: 20px;display:inlin
 
 #popup{position: fixed;top: 0px;height: 700px;width: 100%;
 background: rgba(0,0,0,0.8);z-index: 48;display:none;}
-	.exit{font-size:65px;float: right;cursor:pointer;z-index: 50;}
-	#inpopup{background:white;margin:10%;width:80%;}
+	.exit{font-size:100px;float: right;cursor:pointer;z-index: 50;}
+	#inpopup{background:white;margin:5%;width:90%;overflow:auto;}
 		
 		#inpopup .titre {height:100px;}
 		#inpopup h3{font-size: 36px;padding-top: 33px;}
@@ -29,6 +29,7 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		/* #inpopup div{margin:10px;} */
 		#inpopup h6{background:rgb(96,96,96);font-size:20px;color:white;padding: 8px;display:inline-block;margin:5px;cursor:pointer;vertical-align:middle;width:300px;text-align:center;text-transform:uppercase;}
 		#inpopup .awsm,#inpopup input{vertical-align:middle;}
+		.itemchx .awsm,#chitem .awsm{float: right;}
 		
 		#inpopup form{display:inline-block;}
 		#chitem{  display: inline-block;  margin-left: 40px;  width: 30%;}
@@ -51,6 +52,7 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		.boutons h4.actif{color:grey;}
 		
 .awsm,option span{font-family: FontAwesome;text-align:center;font-weight: normal;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;}	
+.awsm:hover{opacity:0.8;}
 	
 
 

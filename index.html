@@ -157,10 +157,17 @@ $(document).ready(function() {
 	
 //ouverture fenetre popup options affichage	
 $('.optaff').on('click', function(){
-x=classes[IDclasse]['optaff'];//rajouter les items
-console.log(x);
+	x=classes[IDclasse]['optaff'];//rajouter les items
+	console.log(x);
 
-var content='<form ><label for="rangee">NOMBRE D\'ELEVE PAR LIGNE</label><input type="number" name="rangee" id="rangee" min="1" value="'+x[0]+'"><div><h6>ITEM ASSOCIE AU CHIFFRE</h6><input name="itemchiffre" placeholder="A choisir parmi les items pédagogiques" data-id="'+x[1]+'" value="'+finditem(x[1])+'"><span class="awsm chitem">&#xf0b1;</span></div><div><h6>ITEM ASSOCIE A LA COULEUR</h6><input name="itemcouleur" placeholder="A choisir parmi les items pédagogiques" data-id="'+x[2]+'" value="'+finditem(x[2])+'"><span class="awsm chitem">&#xf0b1;</span> </div></div><div id="creer" class="similiexit">APPLIQUER</div></form><ul id="chitem"></ul>';
+	var content='<form ><label for="rangee">NOMBRE D\'ELEVE PAR LIGNE</label><select name="rangee" id="rangee">';
+	for(var i=1;i<11;i++){
+		content+='<option ';
+		if(i==x[0]){content+='selected="selected" ';}
+		content+='value="'+i+'">'+i+'</option>';
+
+}
+content+='</select><div><h6>ITEM ASSOCIE AU CHIFFRE</h6><input name="itemchiffre" placeholder="A choisir parmi les items pédagogiques" data-id="'+x[1]+'" value="'+finditem(x[1])+'"><span class="awsm chitem">&#xf0b1;</span></div><div><h6>ITEM ASSOCIE A LA COULEUR</h6><input name="itemcouleur" placeholder="A choisir parmi les items pédagogiques" data-id="'+x[2]+'" value="'+finditem(x[2])+'"><span class="awsm chitem">&#xf0b1;</span> </div></div><div id="creer" class="similiexit">APPLIQUER</div></form><ul id="chitem"></ul>';
 
 genererpopup("optaff","OPTIONS D'AFFICHAGE",'optaffchx">',content);	
 });	
@@ -176,14 +183,15 @@ $('#popup').on('click','.similiexit', function(){
 });
 
 $('#popup').on('click','.chitem', function(){
+	
 	exid=$(this).prev('input').data('id');
-	list_item('#chitem',false,"",exid);
+	list_item('#chitem',false,check,exid);
+	$('#chitem').prepend('Check pour choisir');
 	$(this).prev('input').addClass('actif');
 	
 });
-$('#popup').on('dblclick','#chitem li', function(){
-	$('input.actif').attr('value',$(this).html());
-	$('input.actif').attr('data-id',$(this).data('id')).removeClass('actif');
+$('#popup').on('click','#chitem li .awsm', function(){
+	$('input.actif').attr('value',$(this).prev('span').html()).attr('data-id',$(this).parent('li').data('id')).removeClass('actif');
 	$('#chitem').empty();
 });
 

@@ -67,9 +67,9 @@ list='';
 for(IDclas in classes){
 	cl=classes[IDclas];
 	var c=Object.keys(cl).length-1;
-	list+='<li>'+cl['nom']+ic_list1+'</li><ul>';
+	list+='<li data-idclas="'+IDclas+'">'+cl['nom']+ic_list1+'</li><ul>';
 	for(i=1;i<c;i++){	
-		list+='<li>'+cl[i][1]+ic_list1+'</li>';	
+		list+='<li data-idelv="'+cl[i][0]+'">'+cl[i][1]+ic_list1+'</li>';	
 	}
 	list+='<span class="awsm add" title="Ajouter élève">&#xf0fe;</span></ul>';
 }
@@ -81,12 +81,17 @@ $('ul').html(list);
 $('.classes .add').on('click', function(){
 niveau=$(this).parents('ul').length;
  if(niveau==2){
-	$(this).before('<li><input type="text" placeholder="Nouvel élève"></li>');}
+	$(this).before('<li class="ajoutelv"><input type="text" placeholder="Nouvel élève"><span class="awsm">&#xf00c;</span></li>');}
 else{
-	$(this).before('<li><input type="text" placeholder="Nouvelle classe"></li>');}
+	$(this).before('<li class="ajoutclasse"><input type="text" placeholder="Nouvelle classe"><span class="awsm">&#xf00c;</span></li>');}
 
 });
 
+$('.classes').on('click','.ajoutclasse .awsm', function(){
+	newclasse=$(this).prev('input').val();console.log(newclasse);
+	
+	$(this).before('').parent('li').remove();
+});
 </script>	
 	<script src="interaction.js"></script>	
 	

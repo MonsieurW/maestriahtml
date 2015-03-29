@@ -45,7 +45,7 @@
 		</section>
 		<section id ="contenu" >
 			<div>
-				<h4>CLASSES</h4><h4>ELEVES</h4>
+				<h4>CLASSES</h4><h4>ELEVES</h4><h4><i>MOT DE PASSE</i></h4>
 			</div>	
 			<ul>
 			</ul>
@@ -105,7 +105,7 @@ for(IDclas in classes){
 	list+='<li data-idclas="'+IDclas+'">'+cl['nom']+ic_list1+'</li><ul>';
 	for(var i in cl){
 		if(i!='nom'){
-			list+='<li data-idelv="'+i+'">'+cl[i][0]+ic_list1+'</li>';
+			list+='<li data-idelv="'+i+'"><span class="nom">'+cl[i][0]+'</span><span class="mdp">'+cl[i][1]+'</span>'+ic_list1+'</li>';
 		}
 	}
 	list+='<span class="awsm add" title="Ajouter élève">&#xf0fe;</span></ul>';
@@ -115,7 +115,7 @@ $('ul').html(list);
 
 
 //Gestion du bouton pr ajouter classe ou élève
-$('.classes .add').on('click', function(){
+$('.classes ').on('click','.add', function(){
 niveau=$(this).parents('ul').length;
  if(niveau==2){
 	$(this).before('<li class="ajoutelv"><input type="text" placeholder="Nouvel élève"><span class="awsm">&#xf00c;</span></li>');}
@@ -130,19 +130,26 @@ $('.classes').on('click','.ajoutclasse .awsm', function(){
 	IDnewclasse=parseInt(Object.keys(classes).pop())+1;
 	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
 	classes[IDnewclasse]={'nom':newclasse};
-	$(this).parent('li').before('<li data-idclas="'+IDnewclasse+'">'+newclasse+ic_list1+'</li><ul>').remove();
+	$(this).parent('li').before('<li data-idclas="'+IDnewclasse+'">'+newclasse+ic_list1+'</li><ul><span class="awsm add" title="Ajouter élève">&#xf0fe;</span></ul>').remove();
 });
 $('.classes').on('click','.ajoutelv .awsm', function(){
 	IDclasse=$(this).parents('ul ul').prev('li').data('idclas');
 	newelv=$(this).prev('input').val();
 	//pr creer le nvel ID de l'eleve, je bidouille, mais tu trouveras un meilleur systeme
 	IDnewelv=String(IDclasse)+Object.keys(classes[IDclasse]).length;
+	newmdp=gen_mdp(IDnewelv);
 	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
 	console.log(IDnewelv);
 	classes[IDclasse][IDnewelv]=[newelv,'mdpbidon'];
 	console.log(classes[IDclasse]);
-	$(this).parent('li').before('<li data-idelv="'+IDnewelv+'">'+newelv+ic_list1+'</li><ul>').remove();
+	$(this).parent('li').before('<li data-idelv="'+IDnewelv+'"><span class="nom">'+newelv+'</span><span class="mdp">'+newmdp+'</span>'+ic_list1+'</li><ul>').remove();
 });
+
+
+function gen_mdp(ID){//plutôt basique
+	mdp='mdp'+ ID;
+	return mdp;
+}
 </script>	
 	<script src="interaction.js"></script>	
 	

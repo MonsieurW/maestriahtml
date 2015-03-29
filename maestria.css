@@ -106,12 +106,15 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		li .del,li .edit{float: right;margin-left: 20px;}
 		ul ul{display:none;margin-left: 200px;padding: 0px;}
 		#popup ul ul{margin-left: 20px;}
-		.classes ul ul{-webkit-column-count: 2;-webkit-column-gap: 150px;-moz-column-count: 2;-moz-column-gap: 150px;}
+		.classes ul ul{-webkit-column-count: 2;-webkit-column-gap: 50px;-moz-column-count: 2;-moz-column-gap: 50px;}
 	li .awsm:hover{color:rgb(117, 154, 198);}
 	li.actif{color:rgb(117, 154, 198);}
+	li .mdp{visibility:hidden;margin: 10px;
+font-style: italic;}
+	li:hover .mdp{visibility:visible;}
 	
 	.classes ul ul{counter-reset: numele;}
-	.classes ul ul li{}
+	.classes ul ul li{border-left: 1px solid #000;}
 	.classes ul ul li:before{ counter-increment: numele;
 			 content:counter(numele) ". ";}	
 			 

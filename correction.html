@@ -58,11 +58,12 @@
   <script src="maestria.js"></script>
   <script>
   /////////////Données exemple
-  //Items utilisé lors de l'évaluation
+  //Items utilisé lors de l'évaluation =>à créer à partir de IDeval_general
 savoirs=["Le feu ça brule","L'eau, ça mouille","Tous les oiseaux volent dans le ciel","Ta soeur bat le beurre à 300 à l'heure sur le cyclo du facteur!"];
 sf_att=["Utiliser une fourchette","Savoir lécher son coude","Pouvoir écrire son nom dans la neige","Savoir quand se taire et quand parler à très bon escient ;-)"];
 //cette liste ne devra pas comporter les élèves n'ayant pas été évalués
 //nom,note,graphe connaitre,note connaîte, graphe comprendre,note,graphe appliquer, note, graphe analyse, note
+//A creer à partir de IDeval_general et IDclasse_general
 correc=[
 	['Nicolas',2,'graphe1','graphe2','graphe3','graphe4',20,20,20,20,'l','l','l','l','l','l','l','l'],
 	['Allann Wauters de Besterfeld',18,'graphe1','graphe2','graphe3','graphe4',50,70,50,90,'l','l','l','l','l','l','l','l'],
@@ -83,9 +84,9 @@ correc=[
 	['Zoubida',18,'graphe1','graphe2','graphe3','graphe4',80,70,60,90,'l','l','l','l','l','l','l','l']];
   
   
-  start();
+  start(savoirs,sf_att,correc);
   //Générer les infos de la page
-function start(){  
+function start(savoirs,sf_att,correc){  
   fich="";var c1=correc.length;var c2=savoirs.length;var c3=sf_att.length;
 for(i=0;i<c1;i++){
 	fich+='<section><div class="name">'+correc[i][0]+'</div><div class="note">'+correc[i][1]+'</div><div class="taxo">';

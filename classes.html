@@ -65,7 +65,8 @@ classes={
 			//ID:[nom,mdp
 			3101:['Allan Wauters de Besterfeld','mdp1'],
 			3102:['Nana Cerise','mdp2'],
-			3103:['Nicolas','mdp3']		
+			3103:['Nicolas','mdp3'],
+			3102:['Sonia','mdp46'],
 		},
 	32:{
 		'nom':'3<sup>2</sup>',
@@ -144,7 +145,7 @@ $('.classes').on('click','.ajoutelv .awsm', function(){
 	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
 	console.log(IDnewelv);
 	classes[IDclasse][IDnewelv]=[newelv,newmdp];
-	console.log(classes[IDclasse]);
+	
 	$(this).parent('li').before('<li data-idelv="'+IDnewelv+'"><span class="nom">'+newelv+'</span><span class="mdp">'+newmdp+'</span>'+ic_list1+'</li><ul>').remove();
 });
 
@@ -172,11 +173,15 @@ $('.classes').on('click','.del', function(){
 	if($(this).is('ul ul li .del')){
 		if(window.confirm("Veux-tu vraiment supprimer cet élève?")){
 			console.log('del eleve');
+			//modif bdd
+		$(this).parent('li').remove();
 		}
 	}
 	else{
 		if(window.confirm("Veux-tu vraiment supprimer cette classe?")){
 			console.log('del classe');
+			//modif bdd
+		$(this).parent('li').remove();	
 		}
 		
 	}

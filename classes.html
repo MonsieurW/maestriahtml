@@ -97,12 +97,13 @@ classes={
 
 
 ///////////////////////Fonctions
+//NB:je n'ai fait aucun test sur les entrées de caracteres
 
 //générer la liste des classes et des élèves
 list='';
 for(IDclas in classes){
 	cl=classes[IDclas];
-	list+='<li data-idclas="'+IDclas+'">'+cl['nom']+ic_list1+'</li><ul>';
+	list+='<li data-idclas="'+IDclas+'"><span class="nom">'+cl['nom']+'</span>'+ic_list1+'</li><ul>';
 	for(var i in cl){
 		if(i!='nom'){
 			list+='<li data-idelv="'+i+'"><span class="nom">'+cl[i][0]+'</span><span class="mdp">'+cl[i][1]+'</span>'+ic_list1+'</li>';
@@ -124,6 +125,7 @@ else{
 
 });
 
+//Enregistrer l'ajout d'une classe 
 $('.classes').on('click','.ajoutclasse .awsm', function(){
 	newclasse=$(this).prev('input').val();
 	//pr creer le nvel ID de la classe, j'increment le dernier ID
@@ -132,6 +134,7 @@ $('.classes').on('click','.ajoutclasse .awsm', function(){
 	classes[IDnewclasse]={'nom':newclasse};
 	$(this).parent('li').before('<li data-idclas="'+IDnewclasse+'">'+newclasse+ic_list1+'</li><ul><span class="awsm add" title="Ajouter élève">&#xf0fe;</span></ul>').remove();
 });
+//Enregistrer l'ajout d'un élève
 $('.classes').on('click','.ajoutelv .awsm', function(){
 	IDclasse=$(this).parents('ul ul').prev('li').data('idclas');
 	newelv=$(this).prev('input').val();
@@ -140,9 +143,43 @@ $('.classes').on('click','.ajoutelv .awsm', function(){
 	newmdp=gen_mdp(IDnewelv);
 	//je rajoute la nouvelle classe au tableau (et on l'envoie à la bdd?)
 	console.log(IDnewelv);
-	classes[IDclasse][IDnewelv]=[newelv,'mdpbidon'];
+	classes[IDclasse][IDnewelv]=[newelv,newmdp];
 	console.log(classes[IDclasse]);
 	$(this).parent('li').before('<li data-idelv="'+IDnewelv+'"><span class="nom">'+newelv+'</span><span class="mdp">'+newmdp+'</span>'+ic_list1+'</li><ul>').remove();
+});
+
+//Ce qui se passe sur click edit eleve puis classe
+$('.classes').on('click','.edit', function(){
+	if($(this).is('ul ul li .edit')){
+		//Je ne sais pas quelles informations on autorise à modifier pr l'éleve:mdp?faire une liste déroulante pour l'attribuer à un autre classe?
+	}
+	else{
+		nom=$(this).siblings('.nom').html();
+		IDclas=$(this).parent('li').data('idclas');
+		$(this).parent('li').before('<li class="modifclasse" data-idclas="'+IDclas+'"><input type="text" value="'+nom+'"><span class="awsm">&#xf00c;</span></li>').remove();
+	}
+});
+$('.classes').on('click','.modifclasse .awsm', function(){
+	nomclasse=$(this).prev('input').val();
+	IDclas=$(this).parent('li').data('idclas');
+	//changer la bdd
+	//est-ce utile de changer le tableau json à ce moment?
+	$(this).parent('li').before('<li data-idclas="'+IDclas+'"><span class="nom">'+nomclasse+'</span>'+ic_list1+'</li>').remove();
+});
+
+
+$('.classes').on('click','.del', function(){
+	if($(this).is('ul ul li .del')){
+		if(window.confirm("Veux-tu vraiment supprimer cet élève?")){
+			console.log('del eleve');
+		}
+	}
+	else{
+		if(window.confirm("Veux-tu vraiment supprimer cette classe?")){
+			console.log('del classe');
+		}
+		
+	}
 });
 
 

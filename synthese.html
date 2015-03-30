@@ -222,15 +222,19 @@ synthese_item={
 
 /////////////////////////////////////Fonctions
 gen_list_elv(IDclasse_general);
-text="";
-for(var i in synthese_domaine){
+afficher_domaine();
+
+function afficher_domaine(){
+	text="";
+	for(var i in synthese_domaine){
 	text+=colonne_rslt(synthese_domaine,i);
 	
-}	
-$('#domain').prepend(text);	
-	//Accordéon 
-	$('.synthese article').hide();
-	//accordéon
+	}	
+	$('#domain').prepend(text);	
+}
+
+	//Accordéon + génération colonnes désirées
+$('.synthese article').hide();
 $('#domain').on('click','section:not(article article section)', function(){
 txt="";
 	if($(this).is('article section')){
@@ -280,6 +284,7 @@ txt="";
 		}	
 	}
 });
+
 function gen_list_elv(IDclasse){
 	txt="";
 	s=synthese_classe[IDclasse];tt=s.length;
@@ -300,16 +305,7 @@ function colonne_rslt(tableau,IDitem){
 	return txt;
 	
 }	
-
-
-
-
-
-
-
-
-
 	</script>
-	
+<script src="interaction.js"></script>		
 	
 </HTML>	

@@ -18,10 +18,11 @@ $('#evalchx').on('click', function(){
 
 //Au click dans le pop-up choix de l'évaluation
 $('#popup').on('click','.evalchx h6', function(){
-	IDeval=$(this).data('ideval');
+	IDeval_general=$(this).data('ideval');
 	$('#evalchx').html($(this).html());
 //changer l'information évaluation remplie ou pas	
 	$('#popup').slideToggle();
+	
 });
 
 
@@ -37,12 +38,21 @@ $('#classe').on('click', function(){
 });
 //Au click dans le pop-up choix classe
 $('#popup').on('click','.classechx h6', function(){
-	IDclasse=$(this).data('idclasse');
+	IDclasse_general=$(this).data('idclasse');
 	
 	$('#classe').html($(this).html());
 	$('#cases').empty();
-	if($('#corps').hasClass('evaluer')){gen_case_eleves(IDclasse);}
-	
+	if($('#corps').hasClass('evaluer')){
+		gen_case_eleves(IDclasse_general);}
+	else if( $('#corps').hasClass('synthese')){
+		//bdd: actualiser synthese_domaine,theme et item
+		afficher_domaine();
+	}
+	else{//dans le cas de la page correction
+		//bdd :actualiser tableaux savoirs,sf_att,correc
+		start(savoirs,sf_att,correc);
+		
+	}
 //changer l'information évaluation remplie ou pas	
 	$('#popup').slideToggle();
 });

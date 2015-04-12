@@ -94,12 +94,12 @@ synthese_classe={ //ranger les éleve dans l'ordre alphabetique
 synthese_domaine={
 	"1":["Physique",
 				//[graphe,moyenne] (dans l'ordre alphabetique
-			['Graphe',30],['Graphe',80],['Graphe',80],
-			['Graphe',50],['Graphe',30],['Graphe',52],
-			['Graphe',50],['Graphe',30],['Graphe',80],
-			['Graphe',50],['Graphe',30],['Graphe',80],
-			['Graphe',50],['Graphe',30],['Graphe',80],
-			['Graphe',50],['Graphe',30],['Graphe',80],['Graphe',50],['Graphe',50]
+			['Graphe',5],['Graphe',10],['Graphe',20],
+			['Graphe',25],['Graphe',30],['Graphe',35],
+			['Graphe',40],['Graphe',45],['Graphe',50],
+			['Graphe',55],['Graphe',60],['Graphe',65],
+			['Graphe',70],['Graphe',75],['Graphe',80],
+			['Graphe',85],['Graphe',90],['Graphe',95],['Graphe',99],['Graphe',50]
 	],
 	"2":["Chimie",
 			['Graphe',30],['Graphe',80],['Graphe',50],
@@ -283,19 +283,31 @@ txt="";
 		}	
 	}
 });
+
+
+$('#domain').on('click','.visuel', function(){
+refresh_color($(this).parent('section').data('id'));	
+$('.visuel').removeClass('actif');
+$(this).addClass('actif');
+
+});
+
+
+
+
 function gen_list_elv(IDclasse){
 	txt="";
 	s=synthese_classe[IDclasse];tt=s.length;
 	
 	for(var i=0;i<tt;i++){
-		txt+='<h5><span class="awsm" style="color:background:rgb(0,'+couleur(s[i][2])+')">&#xf007;</span>'+s[i][1]+'</h5>';	
+		txt+='<h5><span class="awsm" style="color:rgb('+couleur(s[i][2])+',0)">&#xf007;</span>'+s[i][1]+'</h5>';	
 	}
 	$('#listeleve').prepend(txt);
 }
 
 function colonne_rslt(tableau,IDitem){
 	s=tableau[IDitem];tt=s.length;
-	var txt='<section data-id="'+IDitem+'"><h6>'+s[0]+'</h6>';
+	var txt='<section data-id="'+IDitem+'"><button class="visuel awsm" title="Colore l\'icône élève en fonction de cette colonne">&#xf178; &#xf007;</button><h6>'+s[0]+'</h6>';
 	for(i=1;i<tt;i++){	
 		txt+='<div><span>'+s[i][1]+'%</span><aside>'+s[i][0]+'</aside></div>';
 		}
@@ -306,10 +318,23 @@ function colonne_rslt(tableau,IDitem){
 
 
 
-
-
-
-
+function refresh_color(id){id=id.toString();
+	split=id.split('-');
+	if(split[2]!=undefined){
+	tableau=synthese_item[id];
+	}
+	else
+	{	if(split[1]!=undefined){
+		tableau=synthese_theme[id];
+		}
+		else{
+		tableau=synthese_domaine[id];
+		}
+	}
+	$('#listeleve h5 .awsm').each(function( index ) {
+		$(this).css('color','rgb('+couleur(tableau[index+1][1])+',0)');
+	});	
+}
 
 
 	</script>

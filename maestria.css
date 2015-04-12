@@ -120,15 +120,14 @@ font-style: italic;}
 			 
 /*******************synthese*************/		
 	.synthese{background: rgb(236, 76, 76);/* 117,154,198 */}
-	
+	.synthese #contenu{padding-top:20px;}
 	
 	#listeleve{padding-top:30px;width:196px;z-index: 45;background:rgba(255,255,255,0.5);display:inline-block;  }
 		#listeleve h5,#domain div{height:30px;border-bottom:1px solid black;}
-		#listeleve h5{background:rgb(255,255,255);}
-		
-		#listeleve h5:hover{background: rgba(240,240,240,0.3);border-bottom: 1px solid black;}
-	#domain{display:inline-block;white-space: nowrap;overflow-x: auto;margin-left: -3px;}
-		#domain section{width:70px;display:inline-block;background:white;text-align: center;cursor:pointer;border-left:1px solid black;}	
+		#listeleve h5{background:rgb(255,255,255);vertical-align: middle;}
+		#listeleve h5 .awsm{  font-size: 24px;vertical-align: middle;}
+	#domain{display:inline-block;white-space: nowrap;margin-left: -3px;}
+		#domain section{width:70px;display:inline-block;background:white;text-align: center;cursor:pointer;border-left:1px solid black;margin-top:-20px;}	
 		
 		#domain h6{height:30px;text-align: center;word-wrap: break-word;hyphens: auto;font-size: 10px;word-break: break-all;
 		-webkit-hyphens: auto;
@@ -138,6 +137,9 @@ font-style: italic;}
 		  -ms-hyphens: auto;
 		  -o-hyphens: auto;
 		  }
+		  .visuel{color:green;  height: 20px; z-index: 50;opacity:0;}
+		  #domain section:hover .visuel{opacity:1;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;}
+		  .visuel.actif{opacity:1;}
 		
 		#domain section:hover{opacity:0.8:}
 		#domain section div:nth-child(odd),#listeleve h5:nth-child(even){background:rgb(240,240,240);}

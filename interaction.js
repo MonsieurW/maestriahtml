@@ -18,10 +18,15 @@ $('#evalchx').on('click', function(){
 
 //Au click dans le pop-up choix de l'évaluation
 $('#popup').on('click','.evalchx h6', function(){
-	IDeval=$(this).data('ideval');
+	IDeval_gl=$(this).data('ideval');
 	$('#evalchx').html($(this).html());
-//changer l'information évaluation remplie ou pas	
 	$('#popup').slideToggle();
+	
+	if($('#corps').hasClass('evaluer')){//dans le cas de la page index ,rien à changer
+		}
+	else{}//dans le cas de la page correction, à completer (rafraichir savoirs, sf_att, et correc
+	
+	
 });
 
 
@@ -37,18 +42,18 @@ $('#classe').on('click', function(){
 });
 //Au click dans le pop-up choix classe
 $('#popup').on('click','.classechx h6', function(){
-	IDclasse=$(this).data('idclasse');
+	IDclasse_gl=$(this).data('idclasse');
 	
 	$('#classe').html($(this).html());
 	$('#cases').empty();
 	if($('#corps').hasClass('evaluer')){
-		gen_case_eleves(IDclasse);}
+		gen_case_eleves(IDclasse_gl);}
 	else if($('#corps').hasClass('synthese')){
 		$('#domain').empty();$('#listeleve').empty();
-		gen_list_elv(IDclasse_general);
+		gen_list_elv(IDclasse_gl);
 		gen_lists_domain();
 	}
-	else{}//dans le cas de la page correction
+	else{}//dans le cas de la page correction, à completer
 	
 
 	$('#popup').slideToggle();

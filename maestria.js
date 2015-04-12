@@ -1,8 +1,8 @@
 
 ///////////////données toutes pages/////////////////////////////
 //Valeurs par défaut
-IDeval_general=111;
-IDclasse_general=32;
+IDeval_gl=111;
+IDclasse_gl=32;
 results={};
 check='<span class="awsm">&#xf00c;</span>';
 

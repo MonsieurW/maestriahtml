@@ -102,7 +102,7 @@ classes={
 	
 /////////////////////////////// Fonctions	
 	
-	gen_case_eleves(IDclasse_general);
+	gen_case_eleves(IDclasse_gl);
 	
 	
 	function gen_case_eleves(IDclasse){
@@ -204,7 +204,7 @@ $(document).ready(function() {
 	
 //ouverture fenetre popup options affichage	
 $('.optaff').on('click', function(){
-	x=classes[IDclasse_general]['optaff'];//rajouter les items
+	x=classes[IDclasse_gl]['optaff'];//rajouter les items
 	console.log(x);
 
 	var content='<form ><label for="rangee">NOMBRE D\'ELEVE PAR LIGNE</label><select name="rangee" id="rangee">';
@@ -225,12 +225,12 @@ rangee=$('#rangee').val();
 	adapter_largeur_rangee(rangee)
 	itemchiffre=$('input[name="itemchiffre"]').data('id');
 	itemcouleur=$('input[name="itemcouleur"]').data('id');
-	classes[IDclasse_general]['optaff']=[rangee,itemchiffre,itemcouleur];
+	classes[IDclasse_gl]['optaff']=[rangee,itemchiffre,itemcouleur];
 	//console.log(classes[IDclasse]['optaff']);
 	//reste à:
 	//-actualiser la bdd ac les changements choisis
-	//-recréer le sous-tableau classes[IDclasse_general] en fonction de item chiffre et item couleur
-	gen_case_eleves(IDclasse_general);
+	//-recréer le sous-tableau classes[IDclasse_gl] en fonction de item chiffre et item couleur
+	gen_case_eleves(IDclasse_gl);
 	$('#popup').slideToggle();
 	
 });
@@ -275,7 +275,7 @@ $('#popup').on('click','.inputresult h4', function(){
 //génération de boutons ABC
 function generer_input(IDelv){
 	 liste="";
-	 e=evals[IDeval_general];
+	 e=evals[IDeval_gl];
 	var c=Object.keys(e).length-2;
 		for(i=1;i<c;i++){
 			taxo=e[i][2];

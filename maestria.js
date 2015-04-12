@@ -86,7 +86,7 @@ function couleur(y){
 
 function finditem(id){
 console.log(id);
-	if(id!=""){
+	if(id!=""){id=id.toString();
 		split=id.split('-');}
 	else{return '';}
 	console.log(split[0]+'/'+split[1]+'/'+split[2]);

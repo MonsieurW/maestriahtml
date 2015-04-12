@@ -204,7 +204,7 @@ $(document).ready(function() {
 	
 //ouverture fenetre popup options affichage	
 $('.optaff').on('click', function(){
-	x=classes[IDclasse]['optaff'];//rajouter les items
+	x=classes[IDclasse_general]['optaff'];//rajouter les items
 	console.log(x);
 
 	var content='<form ><label for="rangee">NOMBRE D\'ELEVE PAR LIGNE</label><select name="rangee" id="rangee">';
@@ -225,7 +225,7 @@ rangee=$('#rangee').val();
 	adapter_largeur_rangee(rangee)
 	itemchiffre=$('input[name="itemchiffre"]').data('id');
 	itemcouleur=$('input[name="itemcouleur"]').data('id');
-	classes[IDclasse]['optaff']=[rangee,itemchiffre,itemcouleur];
+	classes[IDclasse_general]['optaff']=[rangee,itemchiffre,itemcouleur];
 	//console.log(classes[IDclasse]['optaff']);
 	//reste à:
 	//-actualiser la bdd ac les changements choisis

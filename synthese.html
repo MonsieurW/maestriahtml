@@ -222,15 +222,18 @@ synthese_item={
 
 /////////////////////////////////////Fonctions
 gen_list_elv(IDclasse_general);
-text="";
-for(var i in synthese_domaine){
-	text+=colonne_rslt(synthese_domaine,i);
-	
-}	
-$('#domain').prepend(text);	
-	//Accordéon 
-	$('.synthese article').hide();
-	//accordéon
+gen_lists_domain();
+function gen_lists_domain(){
+	text="";
+	for(var i in synthese_domaine){
+		text+=colonne_rslt(synthese_domaine,i);
+		
+	}	
+	$('#domain').prepend(text);	
+		//Accordéon 
+		$('.synthese article').hide();
+}
+		//accordéon
 $('#domain').on('click','section:not(article article section)', function(){
 txt="";
 	if($(this).is('article section')){

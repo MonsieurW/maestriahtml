@@ -41,9 +41,16 @@ $('#popup').on('click','.classechx h6', function(){
 	
 	$('#classe').html($(this).html());
 	$('#cases').empty();
-	if($('#corps').hasClass('evaluer')){gen_case_eleves(IDclasse);}
+	if($('#corps').hasClass('evaluer')){
+		gen_case_eleves(IDclasse);}
+	else if($('#corps').hasClass('synthese')){
+		$('#domain').empty();$('#listeleve').empty();
+		gen_list_elv(IDclasse_general);
+		gen_lists_domain();
+	}
+	else{}//dans le cas de la page correction
 	
-//changer l'information évaluation remplie ou pas	
+
 	$('#popup').slideToggle();
 });
 

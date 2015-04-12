@@ -34,7 +34,7 @@ background: rgba(0,0,0,0.8);z-index: 48;display:none;}
 		#inpopup form{display:inline-block;}
 		#chitem{  display: inline-block;  margin-left: 40px;  width: 30%;}
 		
-#corps{padding-left:160px;min-height:600px;}	
+#corps{padding-left:160px;min-height:600px;  width: 100%;}	
 	.classe{background:rgb(236,76,76);}
 	#titre h3{overflow:hidden;display:none;padding:10px 0px;font-size:46px;} 
 	#classe,#evalchx{cursor:pointer;}
